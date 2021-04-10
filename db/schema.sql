@@ -4,9 +4,9 @@ USE movies_db;
 
 CREATE table users(
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(50),
-    email VARCHAR(50),
-    password VARCHAR(28)
+    name VARCHAR(50) NOT NULL ,
+    email VARCHAR(50) NOT NULL,
+    password VARCHAR(28) NOT NULL
 );
 
 CREATE table movies(
