@@ -1,0 +1,13 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    {{> navbar}}
+</nav>
+<div class="container search-container">
+    {{!-- Search Form --}}
+    <form>
+        <label class="d-block" id="movie-search-label" for="movie-search-input">Search for a Movie</label>
+        <input type="text" id="movie-search-input" name="movie-search-input">
+        <button id="submit-search-btn" type="button" class="btn btn-dark">Search</button>
+    </form>
+</div>
+{{!-- Results Div --}}
+<div id="movie-div" class="row justify-content-center"></div>
