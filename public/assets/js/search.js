@@ -1,5 +1,6 @@
 // Global Variables
 const searchBtn = document.getElementById("submit-search-btn");
+const movieInput = document.getElementById("movie-search-input");
 
 // Function to append movie results to page
 const appendMovies = (results) => {
@@ -36,10 +37,18 @@ const movieApiSearch = (movie) => {
 // Function to search for user's movie input on click of search button
 const searchMovies = (event) => {
   event.preventDefault();
+  console.log(event.target);
 
-  let movieInput = document.getElementById("movie-search-input").value;
-  movieApiSearch(movieInput);
+  let currentMovieInput = document.getElementById("movie-search-input").value;
+  movieApiSearch(currentMovieInput);
 };
 
 // Event listeners
 searchBtn.addEventListener("click", searchMovies);
+// movieInput.addEventListener("keydown", searchMovies);
+movieInput.addEventListener("keypress", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    searchMovies(event);
+  }
+});
