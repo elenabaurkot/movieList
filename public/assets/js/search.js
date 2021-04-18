@@ -1,18 +1,27 @@
 // Global Variables
 const searchBtn = document.getElementById("submit-search-btn");
+const movieInput = document.getElementById("movie-search-input");
 
 // Function to append movie results to page
 const appendMovies = (results) => {
   let movieDiv = document.getElementById("movie-div");
-
+  console.log(results);
   if (results.message) {
-    movieDiv.innerHTML = `<h4>${results.message}</h4>`;
+    movieDiv.innerHTML = `<h4 class="text-center">${results.message}</h4>`;
   } else if (results.length != 0) {
     let movieHTML = "";
     results.forEach((movie) => {
-      movieHTML += movie.title;
+      movieHTML += `<div class="movie-card card overflow-auto" style="width: 220px;">
+      <img src= "https://image.tmdb.org/t/p/w200${movie.poster_path}" class="card-img-top" alt="${movie.title} cover image">
+      <div class="card-body">
+        <h5 class="card-title">${movie.title}</h5>
+        <a href="#" class="btn btn-primary mb-1">Add to Watch List</a>
+        <a href="#" class="btn btn-primary">Add to Favorites</a>
+        <p class="card-text">${movie.overview}</p>
+      </div>
+    </div>`;
     });
-    movieDiv.append(movieHTML);
+    movieDiv.innerHTML = movieHTML;
   } else {
     console.log("error");
   }
@@ -28,10 +37,18 @@ const movieApiSearch = (movie) => {
 // Function to search for user's movie input on click of search button
 const searchMovies = (event) => {
   event.preventDefault();
+  console.log(event.target);
 
-  let movieInput = document.getElementById("movie-search-input").value;
-  movieApiSearch(movieInput);
+  let currentMovieInput = document.getElementById("movie-search-input").value;
+  movieApiSearch(currentMovieInput);
 };
 
 // Event listeners
 searchBtn.addEventListener("click", searchMovies);
+// movieInput.addEventListener("keydown", searchMovies);
+movieInput.addEventListener("keypress", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    searchMovies(event);
+  }
+});

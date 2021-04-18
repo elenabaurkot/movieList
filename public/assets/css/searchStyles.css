@@ -10,3 +10,8 @@
   font-size: 2em;
   letter-spacing: 1.2px;
 }
+
+.movie-card {
+  height: 500px;
+  margin: 0px 15px 40px 15px;
+}
